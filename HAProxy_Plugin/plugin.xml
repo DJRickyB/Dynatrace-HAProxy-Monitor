@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<!-- plugin.xml file written by dynaTrace Client 6.2.6 -->
+<plugin>
+  <extension point="com.dynatrace.diagnostics.pdk.pluginconfig" id="com.dynatrace.diagnostics.plugin.HAProxyPlugin" name="HAProxy Plugin">
+    <information>
+      <category value="" />
+      <displayname value="HAProxy Plugin" />
+      <description value="Monitors an HAProxy stats page for status of load balancers and their nodes" />
+      <supportlevel value="unsupported" />
+    </information>
+    <configuration>
+      <property key="port" label="Port" type="long" description="port of haproxy stats page (default 1936)" default="1936" />
+      <property key="auth" label="Authentication" type="boolean" description="Use HTTP Authentication?" default="false" />
+      <property key="username" label="Username" type="string" description="User for HTTP Authentication" default="" multiline="false" />
+      <property key="password" label="Password" type="password" description="Password for HTTP Authentication" default="" />
+    </configuration>
+  </extension>
+  <extension point="com.dynatrace.diagnostics.pdk.monitor" id="com.dynatrace.diagnostics.plugin.HAProxyPlugin.monitor" name="HAProxy Monitor">
+    <plugin configid="com.dynatrace.diagnostics.plugin.HAProxyPlugin" class="com.dynatrace.diagnostics.plugin.HAProxyPlugin.HAPMonitor" />
+  </extension>
+  <extension point="com.dynatrace.diagnostics.pdk.monitormetricgroup" id="com.dynatrace.diagnostics.plugin.HAProxyPlugin.monitor.metricgroup1" name="HAProxy Stats">
+    <metricgroup monitorid="com.dynatrace.diagnostics.plugin.HAProxyPlugin.monitor">
+      <metric defaultrate="purepath" name="Server Status" unit="number">
+        <property key="key" value="status" optional="false" />
+      </metric>
+      <metric defaultrate="purepath" name="Check Status" unit="number">
+        <property key="key" value="check_status" optional="false" />
+      </metric>
+      <metric defaultrate="purepath" name="Check Status Code" unit="number">
+        <property key="key" value="check_code" optional="false" />
+      </metric>
+    </metricgroup>
+  </extension>
+</plugin>

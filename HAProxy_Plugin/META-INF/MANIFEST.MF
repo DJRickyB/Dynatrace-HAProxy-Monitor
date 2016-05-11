@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-SymbolicName: com.dynatrace.diagnostics.plugin.HAProxyPlugin;si
+ ngleton:=true
+Bundle-Name: HAProxy Plugin
+Bundle-Version: 0.1.0
+Bundle-ClassPath: .,lib/commons-csv-1.3.jar
+Require-Bundle: com.dynatrace.diagnostics.sdk
+Bundle-ManifestVersion: 2
+Bundle-Vendor: Rick Boyd
+
